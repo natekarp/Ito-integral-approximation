@@ -26,7 +26,7 @@ $$\begin{array}{ccc}
 \hline
 \end{array}$$
 
-$\mathbb{E}[X_t] = 0$, since $W_s$ and $\mathrm{d}W_s$ are independent and have zero mean, while Itô's isometry gives 
+The moments of the stochastic process, namely $X_t = \int_0^t sW_s \,\mathrm{d}W_s$, can be determined analytically and one has $\mathbb{E}[X_t] = 0$, since $W_s$ and $\mathrm{d}W_s$ are independent and have zero mean, while Itô's isometry gives 
 
 $$\mathrm{Var}[X_t] = \mathbb{E}[X_t^2] = \mathbb{E}\left[\int_0^t s^2W_s^2 \,\mathrm{d}s\right] = \int_0^t s^2\,\mathbb{E}[W_s^2] \,\mathrm{d}s = \int_0^t s^3 \,\mathrm{d}s = \frac{1}{4}t^4$$
 
@@ -36,34 +36,34 @@ which is equal to $1/4$ when $t=1$.
 import numpy as np
 
 T = 1.0 
-N = 1000        # Number of steps t (time) reduced for speed
+N = 1000        # no. of out steps t (time) reduced for speed of code output
 dt = T / N
-nbSim = 10000   # Number of simulations
+nbSim = 10000   # no. of our simulations
 Ito_sum = 0.0
 
-# Time grid at the left endpoints here
+# our time grid at the left endpoints here
 t = np.linspace(0, T - dt, N) 
 
 for j in range(nbSim):
-    # Generate Brownian increments here
-    dW = np.sqrt(dt) * np.random.randn(N)
-    # Compute the Brownian motion paths (starting at 0)
-    W = np.cumsum(dW)
-    
-    # To get the value of W at the left endpoints here, we use 0 
-    # and drop the last element
-    W_left = np.insert(W, 0, 0)[:-1]
-    
-    # Itô integral is therefore: sum of (t_i * W_i * dW_i)
-    ito_trajectory = np.sum(t * W_left * dW)
-    
-    # Accumulate the square of the integral here
-    Ito_sum += ito_trajectory ** 2
+    # now, we generate the brownian increments 
+    dW = np.sqrt(dt) * np.random.randn(N)
+    # now, we compute the brownian motion paths, starting at 0
+    W = np.cumsum(dW)
+    
+    # now, we use 0 to get the value of W at the left endpoints here
+    # and drop the last element
+    W_left = np.insert(W, 0, 0)[:-1]
+    
+    # now, the itô integral is therefore: sum of (t_i * W_i * dW_i)
+    ito_trajectory = np.sum(t * W_left * dW)
+    
+    # now, we accumulate the square of the integral here
+    Ito_sum += ito_trajectory ** 2
 
-# Calculate the expected value 
+# now, we calculate the expected value 
 E_Ito_squared = Ito_sum / nbSim
-print("The expected value of the squared Itô integral is: {:.6f}".format(E_Ito_squared))
-## The expected value of the squared Itô integral is: 0.252833. 
+print("Expected value of the squared Itô integral is: {:.6f}".format(E_Ito_squared))
+## Expected value of the squared Itô integral is: 0.236472
 ```
 
 Then, to simulate the paths:
@@ -73,32 +73,33 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 T = 1.0 
-N = 1000        
+N = 1000        
 dt = T / N
-nbSim = 10      # For quick results 
+nbSim = 10     
 
-# Time grid here
+# our time grid 
 t = np.linspace(0, T - dt, N) 
 
 plt.figure(figsize=(10, 6))
 
 for j in range(nbSim):
-    dW = np.sqrt(dt) * np.random.randn(N)
-    W = np.cumsum(dW)
-    W_left = np.insert(W, 0, 0)[:-1]
-    
-    # Calculate our running integral over time using cumsum
-    # This gives us the value of the integral at every single time step
-    ito_path = np.cumsum(t * W_left * dW)
-    
-    # Plot our simulation's path
-    plt.plot(np.linspace(0, T, N), ito_path, label=f'Path {j+1}')
+    dW = np.sqrt(dt) * np.random.randn(N)
+    W = np.cumsum(dW)
+    W_left = np.insert(W, 0, 0)[:-1]
+    
+    # now, we calculate our running integral over time using cumsum
+    # which gives us the value of the integral at every single time step
+    ito_path = np.cumsum(t * W_left * dW)
+    
+    # now, we plot our simulation's path
+    plt.plot(np.linspace(0, T, N), ito_path, label=f'Path {j+1}')
 
 plt.title(r'Simulated Paths of the Itô Integral $\int_0^t s W_s \, dW_s$', fontsize=14)
 plt.xlabel('Time (t)', fontsize=12)
 plt.ylabel('Integral Value', fontsize=12)
 plt.grid(True, linestyle='--', alpha=0.6)
 plt.axhline(0, color='black', lw=1) # Adds our baseline at 0
+plt.savefig('simulateditointegral.png', dpi=300, bbox_inches='tight')
 plt.show()
 ```
 # Final result
