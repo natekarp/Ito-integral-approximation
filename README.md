@@ -32,6 +32,8 @@ $$\mathrm{Var}[X_t] = \mathbb{E}[X_t^2] = \mathbb{E}\left[\int_0^t s^2W_s^2 \,\m
 
 which is equal to $1/4$ when $t=1$.
 
+# Method
+
 ```
 import numpy as np
 
