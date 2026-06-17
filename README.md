@@ -2,7 +2,7 @@
 per textbook problems. Source: _Modeling with Itô Stochastic Differential Equations_ by Edward Allen, pg. 74.
 
 # Background
-Exercise 3.11** (Approximation of an Itô Integral).
+Exercise 3.11 (Approximation of an Itô Integral).
 In this example, the stochastic integral $\int^t_0tW(t)dW(t)$ is considered. The expected value of the integral and the expected value of the square of the integral are estimated using $M=1,000,000$ sample paths. The number of intervals used on $[0,1]$ is $N$ where $N=4,8,16,\dots,256$. The preceding approximate method is used, which for this problem, has the explicit form 
 
 $$\begin{align*}
