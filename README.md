@@ -10,7 +10,7 @@ E((I(f))^\alpha)&=E\left(\int^1_0tW(t)dW(t)\right)^\alpha\\
 &\approx\frac{1}{M}\sum^M_{j=1}\left(\sum^{N-1}_{i=0}t_i^{(N)}W^{(j)}(t_i^{(N)})(W^{(j)}(t^{(N)}_{t+1})-W^{(j)}(t^{(N)}_i))\right)^\alpha\quad(2)\\
 \end{align*}$$
 
-for $\alpha=1$ or $2$ and $t_i^{(N)}=i/N$ for $i=0,1,2,\dots,N$. Notice that $(W^{(j)}(t^{(N)}_{i+1})-W^{(j)}(t_i^{(N)}))=\eta_i^{(j)}/\sqrt{N}$ where $\eta_i^{(j)}\sim N(0,1)$ and also that $(W^{(j)}(t^{(N)}_{i})-W^{(j)}(t_{i-1}^{(N)}))=\eta_{i-1}^{(j)}/\sqrt{N}$. A computer program that performs this calculation is listed at the end of this chapter. The calculational results are given in Table 3.2 for $M=1,000,000$ sample paths. Notice that the results improve as $N$ increases. The exact values are $E(I(f))=0$ and $E((I(f))^2)=0.25.$
+for $\alpha=1$ or $2$ and $t\_i^{(N)}=i/N$ for $i=0,1,2,\dots,N$. Notice that $(W^{(j)}(t^{(N)}\_{i+1})-W^{(j)}(t\_i^{(N)}))=\eta\_i^{(j)}/\sqrt{N}$ where $\eta\_i^{(j)}\sim N(0,1)$ and also that $(W^{(j)}(t^{(N)}\_{i})-W^{(j)}(t\_{i-1}^{(N)}))=\eta\_{i-1}^{(j)}/\sqrt{N}$. A computer program that performs this calculation is listed at the end of this chapter. The calculational results are given in Table 3.2 for $M=1,000,000$ sample paths. Notice that the results improve as $N$ increases. The exact values are $E(I(f))=0$ and $E((I(f))^2)=0.25.$
 
 $$\begin{array}{ccc}
 \hline
